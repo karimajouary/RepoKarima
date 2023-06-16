@@ -1,8 +1,16 @@
-Feature: Importer un référentiel GitHub
+Feature:  change PIN
 
-  Scenario: Importer un référentiel sur GitHub
-    Given Je suis connecté à GitHub avec mon compte
-    When Je choisis d'importer un référentiel
-    And Je saisis les détails du référentiel à importer
-    And Je valide l'importation
-    Then Le référentiel est importé avec succès sur GitHub
+  Scenario: Change PIN successfully  
+  Given I have been issued a new card  
+  And I insert the card, entering the correct PIN  
+  When I choose "Change PIN" from the menu  
+  And  I change the PIN to 9876  
+  Then the system should remember my PIN is now 9876  
+
+Scenario: Try to change PIN to the same as before  
+  Given I have been issued a new card  
+  And I insert the card, entering the correct PIN  
+  When I choose "Change PIN" from the menu  
+  And  I try to change the PIN to the original PIN number  
+  Then I should see a warning message  
+  And the system should not hava changed my PIN
